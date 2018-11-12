@@ -229,6 +229,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:orientation="vertical"></LinearLayout>
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Play again !"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="493dp" />
+        </LinearLayout>
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
