@@ -26,7 +26,7 @@
                 android:layout_weight="33"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/editText5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -34,8 +34,8 @@
                     android:text="X Score"
                     android:textColor="@color/colorAccent" />
 
-                <EditText
-                    android:id="@+id/editText8"
+                <TextView
+                    android:id="@+id/TextView8"
                     android:layout_width="93dp"
                     android:layout_height="39dp"
                     android:layout_gravity="center_horizontal"
@@ -54,7 +54,7 @@
                 android:orientation="vertical">
 
 
-                <EditText
+                <TextView
                     android:id="@+id/editText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,8 +62,8 @@
                     android:text="Draws"
                     android:textColor="@color/colorAccent" />
 
-                <EditText
-                    android:id="@+id/editText9"
+                <TextView
+                    android:id="@+id/TextView9"
                     android:layout_width="93dp"
                     android:layout_height="39dp"
                     android:layout_gravity="center_horizontal"
@@ -81,7 +81,7 @@
                 android:layout_weight="33"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/editText7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,8 +89,8 @@
                     android:text="Y Score"
                     android:textColor="@color/colorAccent" />
 
-                <EditText
-                    android:id="@+id/editText10"
+                <TextView
+                    android:id="@+id/TextView10"
                     android:layout_width="93dp"
                     android:layout_height="39dp"
                     android:layout_gravity="center_horizontal"
@@ -128,8 +128,8 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/editText6"
+                            <TextView
+                                android:id="@+id/TextView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal|center"
