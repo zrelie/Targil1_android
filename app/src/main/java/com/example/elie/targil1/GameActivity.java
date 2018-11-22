@@ -1,5 +1,7 @@
 package com.example.elie.targil1;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
+
 
 public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCompletionListener{
 
@@ -29,6 +32,9 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
     private GameBoard theGame;
     private MediaPlayer mediaPlayer;
     private int current_player;
+    private int XwinsCount;
+    private int OwinsCount;
+    private int drawsCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,35 +57,8 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
         PlayAgain= findViewById(R.id.button4);
 
 
-        L_U.setEnabled(true);
-        L_M.setEnabled(true);
-        L_D.setEnabled(true);
-        M_U.setEnabled(true);
-        M_M.setEnabled(true);
-        M_D.setEnabled(true);
-        R_U.setEnabled(true);
-        R_M.setEnabled(true);
-        R_D.setEnabled(true);
-
-        L_U.setText("");
-        L_M.setText("");
-        L_D.setText("");
-        M_U.setText("");
-        M_M.setText("");
-        M_D.setText("");
-        R_U.setText("");
-        R_M.setText("");
-        R_D.setText("");
-
-        PlayAgain.setEnabled(false);
-
-        theGame = new GameBoard();
-
         mediaPlayer = MediaPlayer.create(this, R.raw.applause);
 
-        current_player = 1;
-
-        Won.setText("X Turn");
 
         L_U.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,10 +158,118 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
                 clicked("R_D", current_player);
             }
         });
+
+        PlayAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initialize_game();
+            }
+        });
+
+        initialize_game();
     }
 
 
+
+
+
+
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sp = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+
+        XwinsCount = sp.getInt("xscore",0);
+        X_score.setText(String.valueOf(XwinsCount));
+        OwinsCount = sp.getInt("yscore",0);
+        Y_score.setText(String.valueOf(OwinsCount));
+        drawsCount = sp.getInt("drawscount",0);
+        Draws.setText(String.valueOf(drawsCount));
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences sp = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor = sp.edit();
+
+        editor.putInt("xscore", XwinsCount);
+        editor.putInt("yscore", OwinsCount);
+        editor.putInt("drawscount", drawsCount);
+
+        editor.commit();
+    }
+
+    private void initialize_game(){
+
+        theGame = new GameBoard();
+
+        L_U.setEnabled(true);
+        L_M.setEnabled(true);
+        L_D.setEnabled(true);
+        M_U.setEnabled(true);
+        M_M.setEnabled(true);
+        M_D.setEnabled(true);
+        R_U.setEnabled(true);
+        R_M.setEnabled(true);
+        R_D.setEnabled(true);
+
+        L_U.setText("");
+        L_M.setText("");
+        L_D.setText("");
+        M_U.setText("");
+        M_M.setText("");
+        M_D.setText("");
+        R_U.setText("");
+        R_M.setText("");
+        R_D.setText("");
+
+        L_U.setTextColor(Color.BLACK);
+        L_M.setTextColor(Color.BLACK);
+        L_D.setTextColor(Color.BLACK);
+        M_U.setTextColor(Color.BLACK);
+        M_M.setTextColor(Color.BLACK);
+        M_D.setTextColor(Color.BLACK);
+        R_U.setTextColor(Color.BLACK);
+        R_M.setTextColor(Color.BLACK);
+        R_D.setTextColor(Color.BLACK);
+
+        PlayAgain.setEnabled(false);
+
+        current_player = 1;
+
+        Won.setText("X Turn");
+
+        X_score.setText(String.valueOf(XwinsCount));
+        Y_score.setText(String.valueOf(OwinsCount));
+        Draws.setText(String.valueOf(drawsCount));
+    }
+
+
+
+
     private void clicked(String cell, int player){
+        if (cell.equals("L_U"))
+            L_U.setEnabled(false);
+        else if (cell.equals("L_M"))
+            L_M.setEnabled(false);
+        else if (cell.equals("L_D"))
+            L_D.setEnabled(false);
+        else if (cell.equals("M_U"))
+            M_U.setEnabled(false);
+        else if (cell.equals("M_M"))
+            M_M.setEnabled(false);
+        else if (cell.equals("M_D"))
+            M_D.setEnabled(false);
+        else if (cell.equals("R_U"))
+            R_U.setEnabled(false);
+        else if (cell.equals("R_M"))
+            R_M.setEnabled(false);
+        else if (cell.equals("R_D"))
+            R_D.setEnabled(false);
+
         theGame.one_move(cell, player);
         Log.d("myTag", "in clicked");
         check_if_winner();
@@ -207,19 +294,26 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
         Log.d("myTag", cell1);
         Log.d("myTag", cell2);
         Log.d("myTag", cell3);
-        Toast.makeText(getApplicationContext(), "continue!", Toast.LENGTH_LONG).show();
+
         if (winner.equals("X_Won") || winner.equals("O_Won") || winner.equals("Draw")){
             Toast.makeText(getApplicationContext(), "Game Over!", Toast.LENGTH_LONG).show();
             if (winner.equals("X_Won")) {
                 mediaPlayer.start();
                 Won.setText("X won!");
+                XwinsCount++;
+                X_score.setText(String.valueOf(XwinsCount));
             }
             else if (winner.equals("O_Won")){
                 mediaPlayer.start();
                 Won.setText("O won!");
+                OwinsCount++;
+                Y_score.setText(String.valueOf(OwinsCount));
             }
-            else
-                Won.setText("Draw - No Winner!!");
+            else {
+                Won.setText("Draw - No Winner!");
+                drawsCount++;
+                Draws.setText(String.valueOf(drawsCount));
+            }
 
             L_U.setEnabled(false);
             L_M.setEnabled(false);
