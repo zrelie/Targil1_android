@@ -7,20 +7,20 @@ import android.widget.TextView;
 
 public class GameActivity extends AppCompatActivity {
 
-    TextView Y_score;
-    TextView X_score;
-    TextView Draws;
-    TextView Won;
-    Button L_U;
-    Button L_M;
-    Button L_D;
-    Button M_U;
-    Button M_M;
-    Button M_D;
-    Button R_U;
-    Button R_M;
-    Button R_D;
-    Button PlayAgain;
+    private TextView Y_score;
+    private TextView X_score;
+    private TextView Draws;
+    private TextView Won;
+    private Button L_U;
+    private Button L_M;
+    private Button L_D;
+    private Button M_U;
+    private Button M_M;
+    private Button M_D;
+    private Button R_U;
+    private Button R_M;
+    private  Button R_D;
+    private Button PlayAgain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

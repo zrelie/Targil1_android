@@ -9,10 +9,10 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Intent I_Instruction;
-    Intent I_Game;
-    Button StartPlay;
-    Button Instructions;
+    private Intent I_Instruction;
+    private Intent I_Game;
+    private Button StartPlay;
+    private Button Instructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

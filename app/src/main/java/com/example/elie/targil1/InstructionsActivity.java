@@ -8,8 +8,8 @@ import android.widget.Button;
 
 public class InstructionsActivity extends AppCompatActivity {
 
-    Intent I_Game;
-    Button StartPlay;
+    private Intent I_Game;
+    private Button StartPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
