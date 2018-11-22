@@ -31,23 +31,23 @@ public class GameBoard {
             i = 0;
             j = 1;
         }
-        if (sell.equals("L_M")) {
+        if (sell.equals("M_M")) {
             i = 1;
             j = 1;
         }
-        if (sell.equals("L_D")) {
+        if (sell.equals("M_D")) {
             i = 2;
-            j = 2;
+            j = 1;
         }
         if (sell.equals("R_U")) {
             i = 0;
             j = 2;
         }
-        if (sell.equals("L_M")) {
+        if (sell.equals("R_M")) {
             i = 1;
             j = 2;
         }
-        if (sell.equals("L_D")) {
+        if (sell.equals("R_D")) {
             i = 2;
             j = 2;
         }
@@ -57,7 +57,7 @@ public class GameBoard {
     public String[] Check_who_won() {
         int i;
         int j;
-        String arr_won[] = new String[4];
+        String arr_won[] = {"","","",""};
         String X = "X_Won";
         String O = "O_Won";
         String Draw = "Draw";

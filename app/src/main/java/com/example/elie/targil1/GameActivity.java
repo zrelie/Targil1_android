@@ -89,6 +89,7 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
                 else
                     L_U.setText("O");
                 clicked("L_U", current_player);
+                Log.d("myTag", "L_U");
             }
         });
 
@@ -184,6 +185,7 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
 
     private void clicked(String cell, int player){
         theGame.one_move(cell, player);
+        Log.d("myTag", "in clicked");
         check_if_winner();
     }
 
@@ -191,14 +193,21 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
 
 
     private void check_if_winner(){
+        Log.d("myTag", "in check if winner");
         String results[] = theGame.Check_who_won();
+
+        Log.d("myTag", "after check who won");
 
         String winner = results[0];
         String cell1 = results[1];
         String cell2 = results[2];
         String cell3 = results[3];
 
-        Log.d("myTag", cell1);
+
+        Log.d("myTag", winner);
+//        Log.d("myTag", cell1);
+//        Log.d("myTag", cell2);
+//        Log.d("myTag", cell3);
 
         if (winner.equals("X_Won") || winner.equals("O_Won") || winner.equals("Draw")){
             Toast.makeText(getApplicationContext(), "Game Over!", Toast.LENGTH_LONG).show();
