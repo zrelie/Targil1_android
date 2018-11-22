@@ -89,7 +89,6 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
                 else
                     L_U.setText("O");
                 clicked("L_U", current_player);
-                Log.d("myTag", "L_U");
             }
         });
 
@@ -205,10 +204,10 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
 
 
         Log.d("myTag", winner);
-//        Log.d("myTag", cell1);
-//        Log.d("myTag", cell2);
-//        Log.d("myTag", cell3);
-
+        Log.d("myTag", cell1);
+        Log.d("myTag", cell2);
+        Log.d("myTag", cell3);
+        Toast.makeText(getApplicationContext(), "continue!", Toast.LENGTH_LONG).show();
         if (winner.equals("X_Won") || winner.equals("O_Won") || winner.equals("Draw")){
             Toast.makeText(getApplicationContext(), "Game Over!", Toast.LENGTH_LONG).show();
             if (winner.equals("X_Won")) {

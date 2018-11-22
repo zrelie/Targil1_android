@@ -1,15 +1,27 @@
 package com.example.elie.targil1;
 
+import android.util.Log;
+
 public class GameBoard {
     public int board[][];
 
     public GameBoard (){
         board = new int[3][3];
-        int i = 0;
-        int j = 0;
-        for(;i<3;i++)
-            for(;j<3;j++)
+        for(int i = 0 ; i<3 ; i++)
+            for(int j = 0 ; j<3 ; j++) {
                 board[i][j] = -1;
+            }
+
+        Log.d("myTag", String.valueOf(board[0][0]));
+        Log.d("myTag", String.valueOf(board[0][1]));
+        Log.d("myTag", String.valueOf(board[0][2]));
+        Log.d("myTag", String.valueOf(board[1][0]));
+        Log.d("myTag", String.valueOf(board[1][1]));
+        Log.d("myTag", String.valueOf(board[1][2]));
+        Log.d("myTag", String.valueOf(board[2][0]));
+        Log.d("myTag", String.valueOf(board[2][1]));
+        Log.d("myTag", String.valueOf(board[2][2]));
+
     }
 
     public void one_move(String sell, int XorO) {
@@ -62,10 +74,6 @@ public class GameBoard {
         String O = "O_Won";
         String Draw = "Draw";
 
-        for(i = 0; i < 3; i++)
-            for(j = 0; j < 3; j++)
-                if(board[i][j] == -1)
-                    return  arr_won;
 
         if (board[1][1] == 1) {
             if (board[0][1] == 1 && board[2][1] == 1) {
@@ -94,18 +102,18 @@ public class GameBoard {
                 return arr_won;
             }
         }
-       else if (board[0][0] == 1) {
+        else if (board[0][0] == 1) {
             if (board[0][1] == 1 && board[0][2] == 1) {
-                arr_won[0] = X;
-                arr_won[1] = "L_U";
-                arr_won[2] = "L_M";
-                arr_won[3] = "L_D";
-                return arr_won;
-            } else if (board[1][0] == 1 && board[2][0] == 1) {
                 arr_won[0] = X;
                 arr_won[1] = "L_U";
                 arr_won[2] = "M_U";
                 arr_won[3] = "R_U";
+                return arr_won;
+            } else if (board[1][0] == 1 && board[2][0] == 1) {
+                arr_won[0] = X;
+                arr_won[1] = "L_U";
+                arr_won[2] = "L_M";
+                arr_won[3] = "L_D";
                 return arr_won;
             }
         }
@@ -151,30 +159,31 @@ public class GameBoard {
                 return arr_won;
             }
         }
-          else if (board[0][0] == 0) {
-                if (board[0][1] == 0 && board[0][2] == 0) {
-                  arr_won[0] = O;
-                  arr_won[1] = "L_U";
-                  arr_won[2] = "L_M";
-                  arr_won[3] = "L_D";
-                  return arr_won;
+        else if (board[0][0] == 0) {
+            if (board[0][1] == 0 && board[0][2] == 0) {
+                arr_won[0] = O;
+                arr_won[1] = "L_U";
+                arr_won[2] = "M_U";
+                arr_won[3] = "R_U";
+                return arr_won;
             }
-                else if (board[1][0] == 0 && board[2][0] == 0) {
-                  arr_won[0] = O;
-                  arr_won[1] = "L_U";
-                  arr_won[2] = "M_U";
-                  arr_won[3] = "R_U";
-                  return arr_won;
+            else if (board[1][0] == 0 && board[2][0] == 0) {
+                arr_won[0] = O;
+                arr_won[1] = "L_U";
+                arr_won[2] = "L_M";
+                arr_won[3] = "L_D";
+                return arr_won;
             }
         }
-           else if (board[2][2] == 0) {
+        else if (board[2][2] == 0) {
             if (board[2][1] == 0 && board[2][0] == 0) {
                 arr_won[0] = O;
                 arr_won[1] = "R_D";
                 arr_won[2] = "L_D";
                 arr_won[3] = "M_D";
                 return arr_won;
-            } else if (board[1][2] == 0 && board[0][2] == 0) {
+            }
+            else if (board[1][2] == 0 && board[0][2] == 0) {
                 arr_won[0] = O;
                 arr_won[1] = "R_D";
                 arr_won[2] = "R_M";
@@ -183,11 +192,13 @@ public class GameBoard {
             }
         }
 
+        for(i = 0; i < 3; i++)
+            for(j = 0; j < 3; j++)
+                if(board[i][j] == -1)
+                    return  arr_won;
+
             arr_won[0] = Draw;
             return arr_won;
-
-
-
     }
 
 
