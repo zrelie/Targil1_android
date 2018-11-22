@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCompletionListener{
 
@@ -197,7 +198,7 @@ public class GameActivity extends AppCompatActivity implements  MediaPlayer.OnCo
         String cell2 = results[2];
         String cell3 = results[3];
 
-
+        Log.d("myTag", cell1);
 
         if (winner.equals("X_Won") || winner.equals("O_Won") || winner.equals("Draw")){
             Toast.makeText(getApplicationContext(), "Game Over!", Toast.LENGTH_LONG).show();
